@@ -4,7 +4,8 @@ import {IndexLinkContainer, LinkContainer} from 'react-router-bootstrap';
 
 const App = (props) => {
     return (
-        <div>
+        <div className="container-fluid">
+
             { props.children }
 
             <Navbar fixedBottom fluid>
@@ -23,6 +24,7 @@ const App = (props) => {
                     </LinkContainer>
                 </Nav>
             </Navbar>
+
         </div>
     );
 };

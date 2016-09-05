@@ -1,8 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {FormGroup, FormControl, Modal, Grid, Row, ButtonGroup, Button, Glyphicon} from 'react-bootstrap';
+import {Grid, Row, Col, ButtonGroup, Button, Glyphicon} from 'react-bootstrap';
 import CategoryList from '../components/CategoryList';
+import CategoryModalDialog from '../components/CategoryModalDialog';
 import * as actions from '../actions/CategoryActions';
 
 
@@ -12,7 +13,6 @@ class CategoriesPage extends React.Component {
         this.openAddModal = this.openAddModal.bind(this);
         this.openEditModal = this.openEditModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
-        this.updateModalTextField = this.updateModalTextField.bind(this);
         this.createCategory = this.createCategory.bind(this);
         this.removeSelectedCategory = this.removeSelectedCategory.bind(this);
     }
@@ -30,10 +30,6 @@ class CategoriesPage extends React.Component {
         this.props.actions.toggleEditCategoryModal(false);
     }
 
-    updateModalTextField(event) {
-        this.props.actions.updateCategoryModalTextField(event.target.value);
-    }
-
     createCategory(event) {
         event.preventDefault();
         this.props.actions.createCategory(this.props.ui.modalInputText);
@@ -48,40 +44,37 @@ class CategoriesPage extends React.Component {
     render() {
         return (
             <div>
-                <Grid>
-                    <h1>My Categories</h1>
+                <Grid fluid>
                     <Row>
-                        <ButtonGroup>
-                            <Button onClick={this.openAddModal}><Glyphicon glyph="plus"/>Add</Button>
-                            <Button disabled={!this.props.ui.selectedId}><Glyphicon glyph="pencil"/>Edit</Button>
-                            <Button disabled={!this.props.ui.selectedId} onClick={this.removeSelectedCategory}><Glyphicon glyph="remove"/>Remove</Button>
-                        </ButtonGroup>
+                        <Col xs={12}>
+                            <h1>My Categories</h1>
+                        </Col>
                     </Row>
                     <Row>
-                        <CategoryList categories={this.props.categories} selectedId={this.props.ui.selectedId}
-                                      clickHandler={this.props.actions.selectCategory}/>
+                        <Col xs={12}>
+                            <ButtonGroup>
+                                <Button onClick={this.openAddModal}><Glyphicon glyph="plus"/>Add</Button>
+                                <Button disabled={!this.props.ui.selectedId}><Glyphicon glyph="pencil"/>Edit</Button>
+                                <Button disabled={!this.props.ui.selectedId}
+                                        onClick={this.removeSelectedCategory}><Glyphicon glyph="remove"/>Remove</Button>
+                            </ButtonGroup>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs={12}>
+                            <CategoryList categories={this.props.categories} selectedId={this.props.ui.selectedId}
+                                          clickHandler={this.props.actions.selectCategory}/>
+                        </Col>
                     </Row>
                 </Grid>
 
-                <Modal show={this.props.ui.showAddModal || this.props.ui.showEditModal} onHide={this.closeModal}>
-                    <form onSubmit={this.createCategory}>
-                        <Modal.Header closeButton>
-                            <Modal.Title>{this.props.ui.showAddModal ? "Add" : "Edit"} Category</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            <FormGroup validationState={this.props.ui.modalInputText.length > 0 ? "success" : "warning"}>
-                                <FormControl type="text"
-                                             value={this.props.ui.modalInputText}
-                                             placeholder="Enter category name..."
-                                             onChange={this.updateModalTextField} />
-                            </FormGroup>
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <Button type="submit" disabled={this.props.ui.modalInputText.length === 0}>Submit</Button>
-                            <Button onClick={this.closeModal}>Cancel</Button>
-                        </Modal.Footer>
-                    </form>
-                </Modal>
+                <CategoryModalDialog showModal={this.props.ui.showAddModal || this.props.ui.showEditModal}
+                                     dialogTitle={this.props.ui.showAddModal ? "Add Category" : "Edit Category"}
+                                     inputText={this.props.ui.modalInputText}
+                                     onCancelHandler={this.closeModal}
+                                     onSubmitHandler={this.createCategory}
+                                     onTextChangeHandler={this.props.actions.updateCategoryModalTextField}
+                />
             </div>
         );
     }
