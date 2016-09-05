@@ -11,11 +11,22 @@ import './styles/styles.scss'; // Yep, that's right. You can import SASS/CSS fil
 import { syncHistoryWithStore } from 'react-router-redux';
 import { loadState, saveState } from './utils/localStorage';
 import { throttle } from 'lodash';
+import initialState from './reducers/initialState';
+import initialUIState from './reducers/initialUIState';
 
-const initialState = loadState();
-const store = configureStore(initialState);
+
+// Initialize the store from localStorage or if undefined - we load from initialState on file.
+// The UI state is not stored to localStorage, and therefore always loaded from file.
+let initialStoreState = loadState() || initialState;
+initialStoreState.ui = initialUIState;
+
+const store = configureStore(initialStoreState);
+
+// Storing the state to localStorage on any store change. We only store part of the state.
+// Serializing the state to JSON is heavy, so we limit calls to saveState to 1 per second.
 store.subscribe(throttle(() => {
-    saveState(store.getState());
+    const {categories, locations} = store.getState();
+    saveState({categories, locations});
 }), 1000);
 
 // Create an enhanced history that syncs navigation events with the store

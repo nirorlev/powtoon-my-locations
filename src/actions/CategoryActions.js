@@ -8,6 +8,21 @@ export function selectCategory(id) {
     };
 }
 
+export function toggleAddCategoryModal(showModal) {
+    return {
+        type: actionTypes.TOGGLE_ADD_CATEGORY_MODAL,
+        showModal
+    };
+}
+
+export function toggleEditCategoryModal(showModal) {
+    return {
+        type: actionTypes.TOGGLE_EDIT_CATEGORY_MODAL,
+        showModal
+    };
+}
+
+
 export function createCategory(name) {
     return {
         type: actionTypes.CREATE_CATEGORY,

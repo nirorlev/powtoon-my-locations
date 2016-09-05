@@ -1,8 +1,7 @@
 import actionTypes from '../actions/actionTypes';
-import initialState from './initialState';
 
 
-export default function locationReducer(state = initialState.locations, action) {
+export default function locationReducer(state = {}, action) {
     switch (action.type) {
         case actionTypes.CREATE_LOCATION:
             return state.concat({

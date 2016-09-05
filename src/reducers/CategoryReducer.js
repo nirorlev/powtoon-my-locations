@@ -1,8 +1,7 @@
 import actionTypes from '../actions/actionTypes';
-import initialState from './initialState';
 
 
-export default function categoryReducer(state = initialState.categories, action) {
+export default function categoryReducer(state = {}, action) {
     switch (action.type) {
         case actionTypes.CREATE_CATEGORY:
             return state.concat({
