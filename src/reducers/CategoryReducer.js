@@ -11,12 +11,12 @@ export default function categoryReducer(state = initialState.categories, action)
             });
 
         case actionTypes.UPDATE_CATEGORY:
-            return state.map( (category) => {
-                return category.id === action.id ? { id: action.id, name: action.name } : category;
+            return state.map((category) => {
+                return category.id === action.id ? {id: action.id, name: action.name} : category;
             });
 
         case actionTypes.DELETE_CATEGORY:
-            return state.filter( (category) => {
+            return state.filter((category) => {
                 return category.id !== action.id;
             });
 

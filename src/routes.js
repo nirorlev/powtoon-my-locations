@@ -2,9 +2,9 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
 import App from './pages/App';
-import Categories from './pages/Categories';
-import Locations from './pages/Locations';
-import NotFoundPage from './pages/NotFoundPage.js';
+import Categories from './pages/CategoriesPage';
+import Locations from './pages/LocationsPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 export default (
   <Route path="/" component={App}>

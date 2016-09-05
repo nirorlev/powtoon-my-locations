@@ -1,6 +1,13 @@
 import actionTypes from './actionTypes';
 import { v4 } from 'node-uuid';
 
+export function selectCategory(id) {
+    return {
+        type: actionTypes.SELECT_CATEGORY,
+        id
+    };
+}
+
 export function createCategory(name) {
     return {
         type: actionTypes.CREATE_CATEGORY,
