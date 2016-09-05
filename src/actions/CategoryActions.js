@@ -1,10 +1,10 @@
 import actionTypes from './actionTypes';
 import { v4 } from 'node-uuid';
 
-export function selectCategory(id) {
+export function selectCategory(category) {
     return {
         type: actionTypes.SELECT_CATEGORY,
-        id
+        category
     };
 }
 

@@ -14,6 +14,7 @@ class CategoriesPage extends React.Component {
         this.openEditModal = this.openEditModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.createCategory = this.createCategory.bind(this);
+        this.updateSelectedCategory = this.updateSelectedCategory.bind(this);
         this.removeSelectedCategory = this.removeSelectedCategory.bind(this);
     }
 
@@ -31,13 +32,19 @@ class CategoriesPage extends React.Component {
     }
 
     createCategory(event) {
-        event.preventDefault();
         this.props.actions.createCategory(this.props.ui.modalInputText);
         this.props.actions.toggleAddCategoryModal(false);
+        event.preventDefault();
+    }
+
+    updateSelectedCategory(event) {
+        this.props.actions.updateCategory(this.props.ui.selectedCategory.id, this.props.ui.modalInputText);
+        this.props.actions.toggleEditCategoryModal(false);
+        event.preventDefault();
     }
 
     removeSelectedCategory() {
-        this.props.actions.deleteCategory(this.props.ui.selectedId);
+        this.props.actions.deleteCategory(this.props.ui.selectedCategory.id);
         this.props.actions.selectCategory(null);
     }
 
@@ -54,25 +61,37 @@ class CategoriesPage extends React.Component {
                         <Col xs={12}>
                             <ButtonGroup>
                                 <Button onClick={this.openAddModal}><Glyphicon glyph="plus"/>Add</Button>
-                                <Button disabled={!this.props.ui.selectedId}><Glyphicon glyph="pencil"/>Edit</Button>
-                                <Button disabled={!this.props.ui.selectedId}
+                                <Button disabled={!this.props.ui.selectedCategory}
+                                        onClick={this.openEditModal}><Glyphicon glyph="pencil"/>Edit</Button>
+                                <Button disabled={!this.props.ui.selectedCategory}
                                         onClick={this.removeSelectedCategory}><Glyphicon glyph="remove"/>Remove</Button>
                             </ButtonGroup>
                         </Col>
                     </Row>
                     <Row>
                         <Col xs={12}>
-                            <CategoryList categories={this.props.categories} selectedId={this.props.ui.selectedId}
+                            <CategoryList categories={this.props.categories}
+                                          selectedCategory={this.props.ui.selectedCategory}
                                           clickHandler={this.props.actions.selectCategory}/>
                         </Col>
                     </Row>
                 </Grid>
 
-                <CategoryModalDialog showModal={this.props.ui.showAddModal || this.props.ui.showEditModal}
-                                     dialogTitle={this.props.ui.showAddModal ? "Add Category" : "Edit Category"}
+                <CategoryModalDialog key="addCategoryModal"
+                                     showModal={this.props.ui.showAddModal}
+                                     dialogTitle="Add Category"
                                      inputText={this.props.ui.modalInputText}
                                      onCancelHandler={this.closeModal}
                                      onSubmitHandler={this.createCategory}
+                                     onTextChangeHandler={this.props.actions.updateCategoryModalTextField}
+                />
+
+                <CategoryModalDialog key="editCategoryModal"
+                                     showModal={this.props.ui.showEditModal}
+                                     dialogTitle="Edit Category"
+                                     inputText={this.props.ui.modalInputText}
+                                     onCancelHandler={this.closeModal}
+                                     onSubmitHandler={this.updateSelectedCategory}
                                      onTextChangeHandler={this.props.actions.updateCategoryModalTextField}
                 />
             </div>

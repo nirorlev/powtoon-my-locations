@@ -4,17 +4,17 @@ import Category from './Category';
 
 class CategoryList extends React.Component {
 
-    handleCategoryClicked(categoryId) {
-        this.props.clickHandler(categoryId);
+    handleCategoryClicked(category) {
+        this.props.clickHandler(category);
     }
 
     render() {
-        const {categories, selectedId} = this.props;
+        const {categories, selectedCategory} = this.props;
 
         const categoriesListItems = categories.map((category) => {
-            const isActive = category.id===selectedId;
+            const isActive = category===selectedCategory;
             return (
-                <ListGroupItem key={category.id} onClick={()=>this.handleCategoryClicked(category.id)} active={isActive}>
+                <ListGroupItem key={category.id} onClick={()=>this.handleCategoryClicked(category)} active={isActive}>
                     <Category name={category.name} id={category.id}/>
                 </ListGroupItem>
             );
