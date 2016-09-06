@@ -71,7 +71,7 @@ class CategoriesPage extends React.Component {
                     <Row>
                         <Col xs={12}>
                             <CategoryList categories={this.props.categories}
-                                          selectedCategory={this.props.ui.selectedCategory}
+                                          selectedCategoryId={this.props.ui.selectedCategory ? this.props.ui.selectedCategory.id : null}
                                           clickHandler={this.props.actions.selectCategory}
                             />
                         </Col>

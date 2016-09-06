@@ -2,7 +2,9 @@ import React from 'react';
 
 const Coordinates = (props) => {
     return (
-        <span>({props.lat} Lat / {props.long} Long)</span>
+        <span>
+            ({(props.lat).toFixed(5)} Lat / {(props.long).toFixed(5)} Long)
+        </span>
     );
 };
 

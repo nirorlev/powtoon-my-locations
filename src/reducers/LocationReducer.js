@@ -6,13 +6,12 @@ export default function locationReducer(state = {}, action) {
         case actionTypes.CREATE_LOCATION:
             return state.concat({
                 id: action.id,
-                name: action.name,
-                categoryId: action.categoryId
+                ...(action.inputLocation)
             });
 
         case actionTypes.UPDATE_LOCATION:
             return state.map( (location) => {
-                return location.id === action.id ? { id: action.id, name: action.name, categoryId: action.categoryId } : location;
+                return location.id === action.id ? { id: action.id, ...(action.inputLocation) } : location;
             });
 
         case actionTypes.DELETE_LOCATION:

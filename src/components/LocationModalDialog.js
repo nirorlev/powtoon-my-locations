@@ -1,5 +1,6 @@
 import React from 'react';
 import {Modal, Form, Col, ControlLabel, FormGroup, FormControl, InputGroup, Button} from 'react-bootstrap';
+import CategoryList from './CategoryList';
 
 
 export default class LocationModalDialog extends React.Component {
@@ -9,13 +10,15 @@ export default class LocationModalDialog extends React.Component {
         this.updateModalAddressField = this.updateModalAddressField.bind(this);
         this.updateModalLat = this.updateModalLat.bind(this);
         this.updateModalLong = this.updateModalLong.bind(this);
+        this.updateModalCategory = this.updateModalCategory.bind(this);
     }
 
     updateModalNameField(event) {
         this.props.onChangeHandler({
             name: event.target.value,
             address: this.props.address,
-            coordinates: { lat: this.props.coordinates.lat, long: this.props.coordinates.long},
+            coordinates: this.props.coordinates,
+            categoryId: this.props.categoryId
         });
     }
 
@@ -23,7 +26,8 @@ export default class LocationModalDialog extends React.Component {
         this.props.onChangeHandler({
             name: this.props.name,
             address: event.target.value,
-            coordinates: { lat: this.props.coordinates.lat, long: this.props.coordinates.long},
+            coordinates: this.props.coordinates,
+            categoryId: this.props.categoryId
         });
     }
 
@@ -31,7 +35,8 @@ export default class LocationModalDialog extends React.Component {
         this.props.onChangeHandler({
             name: this.props.name,
             address: this.props.address,
-            coordinates: { lat: event.target.value, long: this.props.coordinates.long},
+            coordinates: {lat: Number(event.target.value), long: this.props.coordinates.long},
+            categoryId: this.props.categoryId
         });
     }
 
@@ -39,15 +44,26 @@ export default class LocationModalDialog extends React.Component {
         this.props.onChangeHandler({
             name: this.props.name,
             address: this.props.address,
-            coordinates: { lat: this.props.coordinates.lat, long: event.target.value},
+            coordinates: {lat: this.props.coordinates.lat, long: Number(event.target.value)},
+            categoryId: this.props.categoryId
+        });
+    }
+
+    updateModalCategory(category) {
+        this.props.onChangeHandler({
+            name: this.props.name,
+            address: this.props.address,
+            coordinates: this.props.coordinates,
+            categoryId: category ? category.id : null
         });
     }
 
     render() {
         const isNameValid = (this.props.name.length > 0);
         const isAddressValid = (this.props.address.length > 0);
-        const isCoordinatesValid = (this.props.coordinates.lat && this.props.coordinates.long);
-        const isFormValid = (isNameValid && isAddressValid && isCoordinatesValid);
+        const isCoordinatesValid = (true);
+        const isCategoryValid = (this.props.categoryId && this.props.categories.find((category) => category.id === this.props.categoryId));
+        const isFormValid = (isNameValid && isAddressValid && isCoordinatesValid && isCategoryValid);
 
         return (
             <Modal show={this.props.showModal} onHide={this.props.onCancelHandler}>
@@ -104,6 +120,18 @@ export default class LocationModalDialog extends React.Component {
                                                  placeholder="##.#####"
                                                  onChange={this.updateModalLong}/>
                                 </InputGroup>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup
+                            validationState={isCategoryValid ? "success" : "warning"}>
+                            <Col componentClass={ControlLabel} sm={2}>
+                                Category
+                            </Col>
+                            <Col sm={10}>
+                                <CategoryList categories={this.props.categories}
+                                              selectedCategoryId={this.props.categoryId}
+                                              clickHandler={this.updateModalCategory}
+                                />
                             </Col>
                         </FormGroup>
                     </Modal.Body>

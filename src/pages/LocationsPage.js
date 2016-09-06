@@ -32,13 +32,23 @@ class LocationsPage extends React.Component {
     }
 
     createLocation(event) {
-        // this.props.actions.createLocation(this.props.ui.modalInputText);
+        this.props.actions.createLocation({
+            name: this.props.ui.modalName,
+            address: this.props.ui.modalAddress,
+            coordinates: this.props.ui.modalCoordinates,
+            categoryId: this.props.ui.modalCategoryId
+        });
         this.props.actions.toggleAddLocationModal(false);
         event.preventDefault();
     }
 
     updateSelectedLocation(event) {
-        // this.props.actions.updateLocation(this.props.ui.selectedLocation.id, this.props.ui.modalInputText);
+        this.props.actions.updateLocation(this.props.ui.selectedLocation.id, {
+            name: this.props.ui.modalName,
+            address: this.props.ui.modalAddress,
+            coordinates: this.props.ui.modalCoordinates,
+            categoryId: this.props.ui.modalCategoryId
+        });
         this.props.actions.toggleEditLocationModal(false);
         event.preventDefault();
     }
@@ -86,6 +96,8 @@ class LocationsPage extends React.Component {
                                      name={this.props.ui.modalName}
                                      address={this.props.ui.modalAddress}
                                      coordinates={this.props.ui.modalCoordinates}
+                                     categoryId={this.props.ui.modalCategoryId}
+                                     categories={this.props.categories}
                                      onCancelHandler={this.closeModal}
                                      onSubmitHandler={this.createLocation}
                                      onChangeHandler={this.props.actions.updateLocationModalDialog}
@@ -97,6 +109,8 @@ class LocationsPage extends React.Component {
                                      name={this.props.ui.modalName}
                                      address={this.props.ui.modalAddress}
                                      coordinates={this.props.ui.modalCoordinates}
+                                     categoryId={this.props.ui.modalCategoryId}
+                                     categories={this.props.categories}
                                      onCancelHandler={this.closeModal}
                                      onSubmitHandler={this.updateSelectedLocation}
                                      onChangeHandler={this.props.actions.updateLocationModalDialog}

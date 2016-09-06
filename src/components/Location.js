@@ -18,7 +18,7 @@ class Location extends React.Component {
                         <Col xs={12}>
                             <p>Address: {address}</p>
                             <p>Coordinates: <Coordinates {...coordinates} /></p>
-                            <p>Category: <Category {...category} /></p>
+                            <p>Category: { category ? <Category {...category} /> : "<Not Available>" }</p>
                         </Col>
                     </Row>
                 </Grid>

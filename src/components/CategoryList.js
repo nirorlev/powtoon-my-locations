@@ -12,10 +12,10 @@ class CategoryList extends React.Component {
     }
 
     render() {
-        const {categories, selectedCategory} = this.props;
+        const {categories, selectedCategoryId} = this.props;
 
         const categoriesListItems = categories.map((category) => {
-            const isActive = category===selectedCategory;
+            const isActive = category.id===selectedCategoryId;
             return (
                 <ListGroupItem key={category.id} onClick={() => this.handleCategoryClicked(category)} active={isActive}>
                     <Category name={category.name} id={category.id}/>

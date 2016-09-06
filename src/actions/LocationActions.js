@@ -30,21 +30,19 @@ export function updateLocationModalDialog(inputLocation) {
 }
 
 
-export function createLocation(name, categoryId) {
+export function createLocation(inputLocation) {
     return {
         type: actionTypes.CREATE_LOCATION,
         id: v4(), // generate id in action to keep the reducer pure. use uuid and not a counter to support state reloads.
-        name,
-        categoryId
+        inputLocation
     };
 }
 
-export function updateLocation(id, name, categoryId) {
+export function updateLocation(id, inputLocation) {
     return {
         type: actionTypes.UPDATE_LOCATION,
         id,
-        name,
-        categoryId
+        inputLocation
     };
 }
 

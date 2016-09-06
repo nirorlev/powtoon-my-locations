@@ -16,7 +16,8 @@ export default function uiReducer(state = {}, action) {
                 showAddModal: action.showModal,
                 modalName: action.showModal ? "" : state.modalName,
                 modalAddress: action.showModal ? "" : state.modalAddress,
-                modalCoordinates: action.showModal ? {lat: 0.00, long: 0.00} : state.modalCoordinates
+                modalCoordinates: action.showModal ? {lat: 0.00, long: 0.00} : state.modalCoordinates,
+                modalCategoryId: action.showModal ? null : state.modalCategoryId
             };
 
         case actionTypes.TOGGLE_EDIT_LOCATION_MODAL:
@@ -25,7 +26,8 @@ export default function uiReducer(state = {}, action) {
                 showEditModal: action.showModal,
                 modalName: action.showModal ? state.selectedLocation.name : state.modalName,
                 modalAddress: action.showModal ? state.selectedLocation.address : state.modalAddress,
-                modalCoordinates: action.showModal ? state.selectedLocation.coordinates : state.modalCoordinates
+                modalCoordinates: action.showModal ? state.selectedLocation.coordinates : state.modalCoordinates,
+                modalCategoryId: action.showModal ? state.selectedLocation.categoryId : state.modalCategoryId
             };
 
         case actionTypes.UPDATE_LOCATION_MODAL_INPUT:
@@ -33,7 +35,8 @@ export default function uiReducer(state = {}, action) {
                 ...state,
                 modalName: action.inputLocation.name,
                 modalAddress: action.inputLocation.address,
-                modalCoordinates: action.inputLocation.coordinates
+                modalCoordinates: action.inputLocation.coordinates,
+                modalCategoryId: action.inputLocation.categoryId
             };
 
         default:
