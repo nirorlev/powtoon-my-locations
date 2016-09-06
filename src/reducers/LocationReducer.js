@@ -1,6 +1,5 @@
 import actionTypes from '../actions/actionTypes';
 
-
 export default function locationReducer(state = {}, action) {
     switch (action.type) {
         case actionTypes.CREATE_LOCATION:

@@ -32,7 +32,7 @@ Location.propTypes = {
     name: React.PropTypes.string.isRequired,
     address: React.PropTypes.string.isRequired,
     coordinates: React.PropTypes.objectOf(React.PropTypes.number).isRequired,
-    categoryId: React.PropTypes.string.isRequired,
+    categoryId: React.PropTypes.string,
     category: React.PropTypes.object.isRequired,
 };
 

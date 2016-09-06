@@ -30,5 +30,10 @@ class CategoryList extends React.Component {
         );
     }
 }
+CategoryList.propTypes = {
+    selectedCategoryId: React.PropTypes.string,
+    categories: React.PropTypes.array.isRequired,
+    clickHandler: React.PropTypes.func
+};
 
 export default CategoryList;

@@ -16,7 +16,7 @@ export default function uiReducer(state = {}, action) {
                 showAddModal: action.showModal,
                 modalName: action.showModal ? "" : state.modalName,
                 modalAddress: action.showModal ? "" : state.modalAddress,
-                modalCoordinates: action.showModal ? {lat: 0.00, long: 0.00} : state.modalCoordinates,
+                modalCoordinates: action.showModal ? {lat: 32.0662, long: 34.7778} : state.modalCoordinates,
                 modalCategoryId: action.showModal ? null : state.modalCategoryId
             };
 

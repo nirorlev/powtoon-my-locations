@@ -5,6 +5,7 @@ export default {
         modalName: "",
         modalAddress: "",
         modalCoordinates: {lat: 0.00, long: 0.00},
+        modalCategoryId: "",
     },
     categories: {
         showAddModal: false,

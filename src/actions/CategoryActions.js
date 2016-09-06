@@ -22,7 +22,7 @@ export function toggleEditCategoryModal(showModal) {
     };
 }
 
-export function updateCategoryModalTextField(text) {
+export function updateCategoryModalNameField(text) {
     return {
         type: actionTypes.UPDATE_CATEGORY_MODAL_NAME_FIELD,
         text

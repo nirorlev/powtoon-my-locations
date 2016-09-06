@@ -37,3 +37,12 @@ export default class CategoryModalDialog extends React.Component {
         );
     }
 }
+
+CategoryModalDialog.propTypes = {
+    dialogTitle: React.PropTypes.string.isRequired,
+    inputText: React.PropTypes.string.isRequired,
+    onTextChangeHandler: React.PropTypes.func,
+    onCancelHandler: React.PropTypes.func,
+    onSubmitHandler: React.PropTypes.func,
+    showModal: React.PropTypes.bool.isRequired,
+};

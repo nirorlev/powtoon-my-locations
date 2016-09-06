@@ -1,6 +1,6 @@
 import React from 'react';
-import {Accordion, Panel} from 'react-bootstrap';
-import Location from '../components/Location'
+import {Accordion} from 'react-bootstrap';
+import Location from '../components/Location';
 
 class LocationList extends React.Component {
     constructor(props) {
@@ -22,7 +22,7 @@ class LocationList extends React.Component {
     }
 
     render() {
-        const {locations, categories, selectedLocation} = this.props;
+        const {locations, selectedLocation} = this.props;
 
         const activeKey = selectedLocation ? {activeKey: selectedLocation.id} : {activeKey: "-1"};
 
@@ -47,5 +47,12 @@ class LocationList extends React.Component {
         );
     }
 }
+
+LocationList.propTypes = {
+    locations: React.PropTypes.array.isRequired,
+    categories: React.PropTypes.array.isRequired,
+    clickHandler: React.PropTypes.func,
+    selectedLocation: React.PropTypes.object,
+};
 
 export default LocationList;

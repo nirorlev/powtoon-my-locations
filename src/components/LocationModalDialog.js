@@ -144,3 +144,16 @@ export default class LocationModalDialog extends React.Component {
         );
     }
 }
+
+LocationModalDialog.propTypes = {
+    dialogTitle: React.PropTypes.string.isRequired,
+    name: React.PropTypes.string.isRequired,
+    address: React.PropTypes.string.isRequired,
+    coordinates: React.PropTypes.objectOf(React.PropTypes.number).isRequired,
+    categoryId: React.PropTypes.string.isRequired,
+    categories: React.PropTypes.array.isRequired,
+    onChangeHandler: React.PropTypes.func,
+    onCancelHandler: React.PropTypes.func,
+    onSubmitHandler: React.PropTypes.func,
+    showModal: React.PropTypes.bool.isRequired,
+};

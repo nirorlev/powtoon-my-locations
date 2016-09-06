@@ -84,7 +84,7 @@ class CategoriesPage extends React.Component {
                                      inputText={this.props.ui.modalInputText}
                                      onCancelHandler={this.closeModal}
                                      onSubmitHandler={this.createCategory}
-                                     onTextChangeHandler={this.props.actions.updateCategoryModalTextField}
+                                     onTextChangeHandler={this.props.actions.updateCategoryModalNameField}
                 />
 
                 <CategoryModalDialog key="editCategoryModal"
@@ -93,7 +93,7 @@ class CategoriesPage extends React.Component {
                                      inputText={this.props.ui.modalInputText}
                                      onCancelHandler={this.closeModal}
                                      onSubmitHandler={this.updateSelectedCategory}
-                                     onTextChangeHandler={this.props.actions.updateCategoryModalTextField}
+                                     onTextChangeHandler={this.props.actions.updateCategoryModalNameField}
                 />
             </div>
         );
@@ -112,5 +112,11 @@ function mapDispatchToProps(dispatch) {
         actions: bindActionCreators(actions, dispatch)
     };
 }
+
+CategoriesPage.propTypes = {
+    actions: React.PropTypes.objectOf(React.PropTypes.func).isRequired,
+    categories: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+    ui: React.PropTypes.object,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoriesPage);

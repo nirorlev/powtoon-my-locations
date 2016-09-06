@@ -136,4 +136,11 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
+LocationsPage.propTypes = {
+    actions: React.PropTypes.objectOf(React.PropTypes.func).isRequired,
+    locations: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+    categories: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+    ui: React.PropTypes.object,
+};
+
 export default connect(mapStateToProps, mapDispatchToProps)(LocationsPage);
