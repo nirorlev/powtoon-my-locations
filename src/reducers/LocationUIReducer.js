@@ -14,20 +14,23 @@ export default function uiReducer(state = {}, action) {
             return {
                 ...state,
                 showAddModal: action.showModal,
-                modalInputText: action.showModal ? "" : state.modalInputText
+                modalName: action.showModal ? "" : state.modalName,
+                modalAddress: action.showModal ? "" : state.modalAddress
             };
 
         case actionTypes.TOGGLE_EDIT_LOCATION_MODAL:
             return {
                 ...state,
                 showEditModal: action.showModal,
-                modalInputText: action.showModal ? state.selectedLocation.name : state.modalInputText
+                modalName: action.showModal ? state.selectedLocation.name : state.modalName,
+                modalAddress: action.showModal ? state.selectedLocation.address : state.modalAddress
             };
 
-        case actionTypes.UPDATE_LOCATION_MODAL_NAME_FIELD:
+        case actionTypes.UPDATE_LOCATION_MODAL_INPUT:
             return {
                 ...state,
-                modalInputText: action.text
+                modalName: action.inputLocation.name,
+                modalAddress: action.inputLocation.address
             };
 
         default:

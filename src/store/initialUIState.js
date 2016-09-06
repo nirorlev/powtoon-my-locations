@@ -2,7 +2,8 @@ export default {
     locations: {
         showAddModal: false,
         showEditModal: false,
-        modalInputText: "",
+        modalName: "",
+        modalAddress: "",
     },
     categories: {
         showAddModal: false,

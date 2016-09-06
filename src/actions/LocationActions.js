@@ -22,6 +22,14 @@ export function toggleEditLocationModal(showModal) {
     };
 }
 
+export function updateLocationModalDialog(inputLocation) {
+    return {
+        type: actionTypes.UPDATE_LOCATION_MODAL_INPUT,
+        inputLocation
+    };
+}
+
+
 export function createLocation(name, categoryId) {
     return {
         type: actionTypes.CREATE_LOCATION,

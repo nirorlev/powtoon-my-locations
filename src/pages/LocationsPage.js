@@ -82,19 +82,21 @@ class LocationsPage extends React.Component {
                 <LocationModalDialog key="addLocationModal"
                                      showModal={this.props.ui.showAddModal}
                                      dialogTitle="Add Location"
-                                     inputText={this.props.ui.modalInputText}
+                                     name={this.props.ui.modalName}
+                                     address={this.props.ui.modalAddress}
                                      onCancelHandler={this.closeModal}
                                      onSubmitHandler={this.createLocation}
-                                     onTextChangeHandler={this.props.actions.updateLocationModalTextField}
+                                     onChangeHandler={this.props.actions.updateLocationModalDialog}
                 />
 
                 <LocationModalDialog key="editLocationModal"
                                      showModal={this.props.ui.showEditModal}
                                      dialogTitle="Edit Location"
-                                     inputText={this.props.ui.modalInputText}
+                                     name={this.props.ui.modalName}
+                                     address={this.props.ui.modalAddress}
                                      onCancelHandler={this.closeModal}
                                      onSubmitHandler={this.updateSelectedLocation}
-                                     onTextChangeHandler={this.props.actions.updateLocationModalTextField}
+                                     onChangeHandler={this.props.actions.updateLocationModalDialog}
                 />
 
             </div>
