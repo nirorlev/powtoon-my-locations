@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Grid, Row, Col, ButtonGroup, Button, Glyphicon} from 'react-bootstrap';
 import LocationList from '../components/LocationList';
-// import LocationModalDialog from '../components/LocationModalDialog';
+import LocationModalDialog from '../components/LocationModalDialog';
 import * as actions from '../actions/LocationActions';
 
 
@@ -44,7 +44,7 @@ class LocationsPage extends React.Component {
     }
 
     removeSelectedLocation() {
-        // this.props.actions.deleteLocation(this.props.ui.selectedLocation.id);
+        this.props.actions.deleteLocation(this.props.ui.selectedLocation.id);
         this.props.actions.selectLocation(null);
     }
 
@@ -78,6 +78,25 @@ class LocationsPage extends React.Component {
                         </Col>
                     </Row>
                 </Grid>
+
+                <LocationModalDialog key="addLocationModal"
+                                     showModal={this.props.ui.showAddModal}
+                                     dialogTitle="Add Location"
+                                     inputText={this.props.ui.modalInputText}
+                                     onCancelHandler={this.closeModal}
+                                     onSubmitHandler={this.createLocation}
+                                     onTextChangeHandler={this.props.actions.updateLocationModalTextField}
+                />
+
+                <LocationModalDialog key="editLocationModal"
+                                     showModal={this.props.ui.showEditModal}
+                                     dialogTitle="Edit Location"
+                                     inputText={this.props.ui.modalInputText}
+                                     onCancelHandler={this.closeModal}
+                                     onSubmitHandler={this.updateSelectedLocation}
+                                     onTextChangeHandler={this.props.actions.updateLocationModalTextField}
+                />
+
             </div>
         );
     }

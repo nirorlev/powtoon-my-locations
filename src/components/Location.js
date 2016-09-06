@@ -2,7 +2,6 @@ import React from 'react';
 import {Panel, Grid, Row, Col} from 'react-bootstrap';
 import Category from './Category';
 import Coordinates from './Coordinates';
-import MapThumbnail from './MapThumbnail';
 
 
 class Location extends React.Component {
@@ -16,13 +15,10 @@ class Location extends React.Component {
             <Panel {...panelProps} header={name}>
                 <Grid fluid>
                     <Row>
-                        <Col xs={12} sm={8}>
+                        <Col xs={12}>
                             <p>Address: {address}</p>
                             <p>Coordinates: <Coordinates {...coordinates} /></p>
                             <p>Category: <Category name={categoryName}/></p>
-                        </Col>
-                        <Col xsHidden sm={4}>
-                            <MapThumbnail lat={coordinates.lat} long={coordinates.long} name={name} />
                         </Col>
                     </Row>
                 </Grid>
