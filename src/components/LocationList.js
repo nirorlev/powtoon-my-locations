@@ -26,7 +26,9 @@ class LocationList extends React.Component {
 
         const activeKey = selectedLocation ? {activeKey: selectedLocation.id} : {activeKey: "-1"};
 
-        const locationsListItems = locations.map(location => {
+        const sortedLocations = [...locations].sort( (a,b) => (a.name).localeCompare(b.name) );
+
+        const locationsListItems = sortedLocations.map(location => {
                 const activeState = location === selectedLocation ? {bsStyle: "primary"} : {};
                 const category = this.getCategoryById(location.categoryId);
                 return (<Location key={location.id}
