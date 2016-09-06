@@ -22,7 +22,7 @@ class Location extends React.Component {
                             <p>Category: <Category name={categoryName}/></p>
                         </Col>
                         <Col xsHidden sm={4}>
-                            <MapThumbnail lat={coordinates.lat} long={coordinates.long}/>
+                            <MapThumbnail lat={coordinates.lat} long={coordinates.long} name={name} />
                         </Col>
                     </Row>
                 </Grid>

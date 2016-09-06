@@ -1,6 +1,5 @@
 import React from 'react';
-import {GoogleMapLoader, GoogleMap, Marker} from 'react-google-maps';
-
+import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
 
 class MapThumbnail extends React.Component {
     constructor(props) {
@@ -14,16 +13,11 @@ class MapThumbnail extends React.Component {
         };
 
         return (
-            <GoogleMapLoader
-                containerElement={
-                    <div style={{height: `120px`, width: '120px'}} />
-                }
-                googleMapElement={
-                    <GoogleMap defaultZoom={16} defaultCenter={position} > 
-                        <Marker position={position} key={this.props.name} defaultAnimation="2" />
-                    </GoogleMap>
-                }
-            />
+            <div style={{width: '150px', height: '150px'}}>
+                <Map google={this.props.google} zoom={16} initialCenter={position} style={{width: '100%', height: '100%', position: 'relative'}}>
+                    <Marker position={position} />
+                </Map>
+            </div>
         );
     }
 }
@@ -34,4 +28,7 @@ MapThumbnail.propTypes = {
     long: React.PropTypes.number.isRequired
 };
 
-export default MapThumbnail;
+export default GoogleApiWrapper({
+    apiKey: "AIzaSyA4YVNRt3DelbTrI_0SPbn00DCtG6kQfAc",
+    language: 'he'
+})(MapThumbnail);
