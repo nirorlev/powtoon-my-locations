@@ -24,6 +24,11 @@ export default class LocationModalDialog extends React.Component {
     }
 
     render() {
+        const isFormValid = (
+            this.props.name.length > 0 &&
+            this.props.address.length > 0
+        );
+
         return (
             <Modal show={this.props.showModal} onHide={this.props.onCancelHandler}>
                 <form onSubmit={this.props.onSubmitHandler}>
@@ -47,7 +52,7 @@ export default class LocationModalDialog extends React.Component {
                         </FormGroup>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button type="submit" disabled={this.props.name.length === 0}>Submit</Button>
+                        <Button type="submit" disabled={!isFormValid}>Submit</Button>
                         <Button onClick={this.props.onCancelHandler}>Cancel</Button>
                     </Modal.Footer>
                 </form>
