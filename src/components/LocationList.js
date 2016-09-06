@@ -1,16 +1,39 @@
 import React from 'react';
-import {ListGroup, ListGroupItem} from 'react-bootstrap';
+import {Accordion, Panel} from 'react-bootstrap';
 import Location from '../components/Location'
 
-const LocationList = (props) => {
-    const locations = props.locations;
-    const locationsListItems = locations.map( location => <ListGroupItem key={location.id}><Location {...location}/></ListGroupItem> );
+class LocationList extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleLocationSelected = this.handleLocationSelected.bind(this);
+    }
 
-    return (
-        <ListGroup>
-            {locationsListItems}
-        </ListGroup>
-    );
-};
+    handleLocationSelected(locationId) {
+        const location = this.props.locations.find((location) => location.id === locationId);
+        this.props.clickHandler(location);
+    }
+
+    render() {
+        const {locations, selectedLocation} = this.props;
+
+        const activeKey = selectedLocation ? {activeKey: selectedLocation.id} : {activeKey: "-1"};
+
+        const locationsListItems = locations.map(location => {
+                const activeState = location === selectedLocation ? {bsStyle: "primary"} : {};
+                return (<Location key={location.id}
+                                  eventKey={location.id}
+                                  {...activeState}
+                                  {...location}
+                />);
+            }
+        );
+
+        return (
+            <Accordion {...activeKey} onSelect={this.handleLocationSelected}>
+                {locationsListItems}
+            </Accordion>
+        );
+    }
+}
 
 export default LocationList;

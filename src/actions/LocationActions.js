@@ -1,6 +1,27 @@
 import actionTypes from './actionTypes';
 import { v4 } from 'node-uuid';
 
+export function selectLocation(location) {
+    return {
+        type: actionTypes.SELECT_LOCATION,
+        location
+    };
+}
+
+export function toggleAddLocationModal(showModal) {
+    return {
+        type: actionTypes.TOGGLE_ADD_LOCATION_MODAL,
+        showModal
+    };
+}
+
+export function toggleEditLocationModal(showModal) {
+    return {
+        type: actionTypes.TOGGLE_EDIT_LOCATION_MODAL,
+        showModal
+    };
+}
+
 export function createLocation(name, categoryId) {
     return {
         type: actionTypes.CREATE_LOCATION,

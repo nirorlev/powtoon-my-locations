@@ -1,29 +1,32 @@
 import React from 'react';
-import { Grid, Row, Col } from 'react-bootstrap';
+import {Panel, Grid, Row, Col} from 'react-bootstrap';
 import Category from './Category';
 import Coordinates from './Coordinates';
 import MapThumbnail from './MapThumbnail';
 
 
 class Location extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
+        const { id, name, address, coordinates, categoryName, ...panelProps } = this.props;
         return (
-            <div onClick={() => this.props.onSelect(this.props.id)} >
-                <h3>{this.props.name}</h3>
-                <Grid>
+            <Panel {...panelProps} header={name}>
+                <Grid fluid>
                     <Row>
                         <Col xs={12} sm={8}>
-                            <p>Address: {this.props.address}</p>
-                            <p>Coordinates: <Coordinates {...this.props.coordinates} /></p>
-                            <p>Category: <Category name={this.props.categoryName} /></p>
+                            <p>Address: {address}</p>
+                            <p>Coordinates: <Coordinates {...coordinates} /></p>
+                            <p>Category: <Category name={categoryName}/></p>
                         </Col>
-                        <Col xs={12} sm={4}>
-                            MAP
-                            <MapThumbnail lat={this.props.coordinates.lat} long={this.props.coordinates.long} />
+                        <Col xsHidden sm={4}>
+                            <MapThumbnail lat={coordinates.lat} long={coordinates.long}/>
                         </Col>
                     </Row>
                 </Grid>
-            </div>
+            </Panel>
         );
     }
 }
@@ -31,7 +34,7 @@ class Location extends React.Component {
 Location.defaultProps = {
     name: "PowToon Office",
     address: "Ha'arbaa st. Tel-Aviv",
-    coordinates: { lat: 32.070378, long: 34.783351 },   // Powtoon coordinates :)
+    coordinates: {lat: 32.070378, long: 34.783351},   // Powtoon coordinates :)
     categoryName: "Daily route"
 };
 
@@ -41,7 +44,6 @@ Location.propTypes = {
     address: React.PropTypes.string.isRequired,
     coordinates: React.PropTypes.objectOf(React.PropTypes.number).isRequired,
     categoryName: React.PropTypes.string.isRequired,
-    onSelect: React.PropTypes.func
 };
 
 export default Location;

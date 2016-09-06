@@ -1,10 +1,10 @@
 import React, {PropTypes} from 'react';
-import {Navbar, Nav, NavItem, Glyphicon} from 'react-bootstrap';
+import {Grid, Navbar, Nav, NavItem, Glyphicon} from 'react-bootstrap';
 import {IndexLinkContainer, LinkContainer} from 'react-router-bootstrap';
 
 const App = (props) => {
     return (
-        <div className="container-fluid">
+        <Grid fluid>
 
             { props.children }
 
@@ -25,7 +25,7 @@ const App = (props) => {
                 </Nav>
             </Navbar>
 
-        </div>
+        </Grid>
     );
 };
 

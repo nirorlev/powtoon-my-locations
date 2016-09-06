@@ -3,6 +3,10 @@ import {GoogleMapLoader, GoogleMap, Marker} from 'react-google-maps';
 
 
 class MapThumbnail extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         const position = {
             lat: this.props.lat,
@@ -12,11 +16,11 @@ class MapThumbnail extends React.Component {
         return (
             <GoogleMapLoader
                 containerElement={
-                    <div style={{height: `100%`, width: '150px'}} />
+                    <div style={{height: `120px`, width: '120px'}} />
                 }
                 googleMapElement={
-                    <GoogleMap defaultZoom={10} defaultCenter={position} >
-                        <Marker position={position} key={this.props.name} defaultAniumbaion="2" />
+                    <GoogleMap defaultZoom={16} defaultCenter={position} > 
+                        <Marker position={position} key={this.props.name} defaultAnimation="2" />
                     </GoogleMap>
                 }
             />

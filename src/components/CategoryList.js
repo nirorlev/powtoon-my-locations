@@ -3,6 +3,9 @@ import {ListGroup, ListGroupItem} from 'react-bootstrap';
 import Category from './Category';
 
 class CategoryList extends React.Component {
+    constructor(props) {
+        super(props);
+    }
 
     handleCategoryClicked(category) {
         this.props.clickHandler(category);
@@ -14,7 +17,7 @@ class CategoryList extends React.Component {
         const categoriesListItems = categories.map((category) => {
             const isActive = category===selectedCategory;
             return (
-                <ListGroupItem key={category.id} onClick={()=>this.handleCategoryClicked(category)} active={isActive}>
+                <ListGroupItem key={category.id} onClick={() => this.handleCategoryClicked(category)} active={isActive}>
                     <Category name={category.name} id={category.id}/>
                 </ListGroupItem>
             );

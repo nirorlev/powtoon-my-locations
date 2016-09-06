@@ -72,7 +72,8 @@ class CategoriesPage extends React.Component {
                         <Col xs={12}>
                             <CategoryList categories={this.props.categories}
                                           selectedCategory={this.props.ui.selectedCategory}
-                                          clickHandler={this.props.actions.selectCategory}/>
+                                          clickHandler={this.props.actions.selectCategory}
+                            />
                         </Col>
                     </Row>
                 </Grid>

@@ -30,11 +30,20 @@ export default function uiReducer(state = {}, action) {
                 }
             };
 
-        case actionTypes.UPDATE_CATEGORY_MODAL_TEXT_FIELD:
+        case actionTypes.UPDATE_CATEGORY_MODAL_NAME_FIELD:
             return {
                 ...state,
                 categories: {...(state.categories), modalInputText: action.text}
             };
+
+
+        case actionTypes.SELECT_LOCATION: {
+            let locationToSelect = (action.location === state.locations.selectedLocation ? null : action.location);
+            return {
+                ...state,
+                locations: {...(state.locations), selectedLocation: locationToSelect}
+            };
+        }
 
         default:
             return state;
