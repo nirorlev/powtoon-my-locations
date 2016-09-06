@@ -84,6 +84,7 @@ class LocationsPage extends React.Component {
                                      dialogTitle="Add Location"
                                      name={this.props.ui.modalName}
                                      address={this.props.ui.modalAddress}
+                                     coordinates={this.props.ui.modalCoordinates}
                                      onCancelHandler={this.closeModal}
                                      onSubmitHandler={this.createLocation}
                                      onChangeHandler={this.props.actions.updateLocationModalDialog}
@@ -94,6 +95,7 @@ class LocationsPage extends React.Component {
                                      dialogTitle="Edit Location"
                                      name={this.props.ui.modalName}
                                      address={this.props.ui.modalAddress}
+                                     coordinates={this.props.ui.modalCoordinates}
                                      onCancelHandler={this.closeModal}
                                      onSubmitHandler={this.updateSelectedLocation}
                                      onChangeHandler={this.props.actions.updateLocationModalDialog}

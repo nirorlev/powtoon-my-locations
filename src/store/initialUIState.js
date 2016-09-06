@@ -4,6 +4,7 @@ export default {
         showEditModal: false,
         modalName: "",
         modalAddress: "",
+        modalCoordinates: {lat: 0.00, long: 0.00},
     },
     categories: {
         showAddModal: false,
