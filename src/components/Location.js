@@ -10,7 +10,7 @@ class Location extends React.Component {
     }
 
     render() {
-        const { id, name, address, coordinates, categoryName, ...panelProps } = this.props;
+        const { id, name, address, coordinates, categoryId, category, ...panelProps } = this.props;
         return (
             <Panel {...panelProps} header={name}>
                 <Grid fluid>
@@ -18,7 +18,7 @@ class Location extends React.Component {
                         <Col xs={12}>
                             <p>Address: {address}</p>
                             <p>Coordinates: <Coordinates {...coordinates} /></p>
-                            <p>Category: <Category name={categoryName}/></p>
+                            <p>Category: <Category {...category} /></p>
                         </Col>
                     </Row>
                 </Grid>
@@ -27,19 +27,13 @@ class Location extends React.Component {
     }
 }
 
-Location.defaultProps = {
-    name: "PowToon Office",
-    address: "Ha'arbaa st. Tel-Aviv",
-    coordinates: {lat: 32.070378, long: 34.783351},   // Powtoon coordinates :)
-    categoryName: "Daily route"
-};
-
 Location.propTypes = {
     id: React.PropTypes.string,
     name: React.PropTypes.string.isRequired,
     address: React.PropTypes.string.isRequired,
     coordinates: React.PropTypes.objectOf(React.PropTypes.number).isRequired,
-    categoryName: React.PropTypes.string.isRequired,
+    categoryId: React.PropTypes.string.isRequired,
+    category: React.PropTypes.object.isRequired,
 };
 
 export default Location;

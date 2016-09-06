@@ -6,24 +6,34 @@ class LocationList extends React.Component {
     constructor(props) {
         super(props);
         this.handleLocationSelected = this.handleLocationSelected.bind(this);
+        this.getLocationById = this.getLocationById.bind(this);
+    }
+
+    getLocationById(locationId) {
+        return this.props.locations.find((location) => location.id === locationId);
+    }
+
+    getCategoryById(categoryId) {
+        return this.props.categories.find((category) => category.id === categoryId);
     }
 
     handleLocationSelected(locationId) {
-        const location = this.props.locations.find((location) => location.id === locationId);
-        this.props.clickHandler(location);
+        this.props.clickHandler(this.getLocationById(locationId));
     }
 
     render() {
-        const {locations, selectedLocation} = this.props;
+        const {locations, categories, selectedLocation} = this.props;
 
         const activeKey = selectedLocation ? {activeKey: selectedLocation.id} : {activeKey: "-1"};
 
         const locationsListItems = locations.map(location => {
                 const activeState = location === selectedLocation ? {bsStyle: "primary"} : {};
+                const category = this.getCategoryById(location.categoryId);
                 return (<Location key={location.id}
                                   eventKey={location.id}
                                   {...activeState}
                                   {...location}
+                                  category={category}
                 />);
             }
         );

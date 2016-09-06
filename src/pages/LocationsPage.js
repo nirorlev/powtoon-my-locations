@@ -72,6 +72,7 @@ class LocationsPage extends React.Component {
                     <Row>
                         <Col xs={12}>
                             <LocationList locations={this.props.locations}
+                                          categories={this.props.categories}
                                           selectedLocation={this.props.ui.selectedLocation}
                                           clickHandler={this.props.actions.selectLocation}
                             />
@@ -110,6 +111,7 @@ class LocationsPage extends React.Component {
 function mapStateToProps(state) {
     return {
         locations: state.locations,
+        categories: state.categories,
         ui: state.ui.locations
     };
 }

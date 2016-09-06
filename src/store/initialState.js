@@ -5,14 +5,14 @@ export default {
             name: "PowToon Office",
             address: "Ha'arbaa st. Tel-Aviv",
             coordinates: { lat: 32.070378, long: 34.783351 },   // Powtoon coordinates :)
-            categoryName: "Daily route"
+            categoryId: "1"
         },
         {
             id: "1",
             name: "Home",
             address: "20 Hatchiya st. Holon",
             coordinates: { lat: 32.015225, long: 34.781606 },
-            categoryName: "Daily route"
+            categoryId: "1"
         }
     ],
     categories: [
